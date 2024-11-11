@@ -1,0 +1,19 @@
+def fractionalKnapsack(W, items):
+    # Sort items by profit-to-weight ratio in descending order
+    items.sort(key=lambda x: x[0] / x[1], reverse=True)
+    total_value = 0.0
+
+    for profit, weight in items:
+        if weight <= W:
+            W -= weight
+            total_value += profit
+        else:
+            total_value += profit * (W / weight)
+            break
+
+    return total_value
+
+# Example usage
+W = 15
+items = [(5, 1), (10, 3), (15, 5), (7, 4), (8, 1), (9, 3), (4, 2)]
+print(fractionalKnapsack(W, items))  # Should output 51.0
